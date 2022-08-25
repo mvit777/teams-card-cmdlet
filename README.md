@@ -13,7 +13,7 @@ It actually supports 4 types of cards:
 - List Card
 - Hero Card
 
-The aim of my card is to simplify the sending of a card from
+The aim of my library is to simplify the sending of a card from
 
 ```powershell
 New-ThumbnailCard -Title 'Bender' -SubTitle "tale of a robot who dared to love" -Text "Bender Bending Rodríguez is a main character in the animated television series Futurama. He was created by series creators Matt Groening and David X. Cohen, and is voiced by John DiMaggio" {
