@@ -1,0 +1,10 @@
+C:\Users\Marcello\source\repos\PowerShellModuleTest\build\PowerShellModuleTest.Cmdlet.deps.json
+C:\Users\Marcello\source\repos\PowerShellModuleTest\build\PowerShellModuleTest.Cmdlet.dll
+C:\Users\Marcello\source\repos\PowerShellModuleTest\build\PowerShellModuleTest.Cmdlet.pdb
+C:\Users\Marcello\source\repos\PowerShellModuleTest\PowerShellModuleTest.Cmdlet\obj\Release\netstandard2.0\PowerShellModuleTest.Cmdlet.csproj.AssemblyReference.cache
+C:\Users\Marcello\source\repos\PowerShellModuleTest\PowerShellModuleTest.Cmdlet\obj\Release\netstandard2.0\PowerShellModuleTest.Cmdlet.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Marcello\source\repos\PowerShellModuleTest\PowerShellModuleTest.Cmdlet\obj\Release\netstandard2.0\PowerShellModuleTest.Cmdlet.AssemblyInfoInputs.cache
+C:\Users\Marcello\source\repos\PowerShellModuleTest\PowerShellModuleTest.Cmdlet\obj\Release\netstandard2.0\PowerShellModuleTest.Cmdlet.AssemblyInfo.cs
+C:\Users\Marcello\source\repos\PowerShellModuleTest\PowerShellModuleTest.Cmdlet\obj\Release\netstandard2.0\PowerShellModuleTest.Cmdlet.csproj.CoreCompileInputs.cache
+C:\Users\Marcello\source\repos\PowerShellModuleTest\PowerShellModuleTest.Cmdlet\obj\Release\netstandard2.0\PowerShellModuleTest.Cmdlet.dll
+C:\Users\Marcello\source\repos\PowerShellModuleTest\PowerShellModuleTest.Cmdlet\obj\Release\netstandard2.0\PowerShellModuleTest.Cmdlet.pdb
