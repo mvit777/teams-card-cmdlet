@@ -12,6 +12,7 @@ It actually supports 4 types of cards:
 - Adaptive Card
 - List Card
 - Hero Card
+- Thumbnail Card
 
 The aim of my library is to simplify the sending of a card from
 
