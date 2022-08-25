@@ -27,4 +27,4 @@ to
 ```powershell
 .\main.ps1 thumbnail
 ```
-content and structure can be edited on the fly directly in vscode
+content and structure can be edited on the fly directly in vscode as a .yml file
