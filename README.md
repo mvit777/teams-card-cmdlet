@@ -6,4 +6,4 @@ A sample c# library to wrap the excellent [PSTeams](https://github.com/EvotecIT/
 
 In they own definition
 
-***"PSTeams is a PowerShell Module working on Windows / Linux and Mac. It allows sending notifications to Microsoft Teams via WebHook Notifications"
+***"PSTeams is a PowerShell Module working on Windows / Linux and Mac. It allows sending notifications to Microsoft Teams via WebHook Notifications"***
