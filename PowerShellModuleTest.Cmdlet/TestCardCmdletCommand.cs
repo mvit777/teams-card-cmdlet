@@ -33,6 +33,13 @@ namespace PowerShellModuleTest.Cmdlet
             ValueFromPipelineByPropertyName = true)]
         public string CardType { get; set; }
 
+        [Parameter(
+            Mandatory = true,
+            Position = 3,
+            ValueFromPipeline = true,
+            ValueFromPipelineByPropertyName = true)]
+        public string ChannelsFile { get; set; }
+
         // This method gets called once for each cmdlet in the pipeline when the pipeline starts executing
         protected override void BeginProcessing()
         {
@@ -68,11 +75,11 @@ namespace PowerShellModuleTest.Cmdlet
             }
             try
             {
-                card.SendCard(ref ps);
+                card.SendCard(ref ps, ChannelsFile);
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
-                throw ex;
+                Console.WriteLine(ex.ToString());
             }
             finally
             {
@@ -80,7 +87,7 @@ namespace PowerShellModuleTest.Cmdlet
                 runspace.Close();
                 runspace.Dispose();
             }
-            
+
             //var card = new AdaptiveCard
             //{
             //    Json = Json
@@ -107,7 +114,7 @@ namespace PowerShellModuleTest.Cmdlet
     {
         string Json { get; set; }
         string Type { get; set; }
-        void SendCard(ref PowerShell ps);
+        void SendCard(ref PowerShell ps, string channelsFile);
     }
 
     public abstract class BaseCard : ICard
@@ -119,33 +126,69 @@ namespace PowerShellModuleTest.Cmdlet
         public string Text { get; set; }
         public Image Image { get; set; }
         public string Uri { get; set; }
-        public abstract void SendCard(ref PowerShell ps);
-   
+        public abstract void SendCard(ref PowerShell ps, string channelsFile);
+
+    }
+    public class GenericCard : BaseCard
+    {
+        public override void SendCard(ref PowerShell ps, string channelsFile)
+        {
+            throw new NotImplementedException();
+        }
     }
     public class AdaptiveCard : BaseCard
     {
-        public override void SendCard(ref PowerShell ps)
+        public override void SendCard(ref PowerShell ps, string channelsFile)
         {
             throw new NotImplementedException();
         }
     }
     public class ListCard : BaseCard
     {
-        public override void SendCard(ref PowerShell ps)
+        public override void SendCard(ref PowerShell ps, string channelsFile)
         {
-            throw new NotImplementedException();
+            var lines = System.IO.File.ReadAllLines(channelsFile);
+            foreach (var line in lines)
+            {
+                ScriptBlock scriptBlock = ScriptBlock.Create("{New-HeroImage -Url 'https://upload.wikimedia.org/wikipedia/en/a/a6/Bender_Rodriguez.png' -AltText \"Bender Rodríguez\"}");
+                ps.AddCommand("New-HeroCard")
+                .AddParameter("Title", Title)
+                .AddParameter("SubTitle", SubTitle)
+                .AddParameter("Text", Text)
+                .AddParameter("Content", scriptBlock)
+                .AddParameter("Uri", line);
+
+                scriptBlock.InvokeReturnAsIs(new object[] { });
+                ps.Invoke();
+            }
+            ps.Dispose();
         }
     }
     public class HeroCard : BaseCard
     {
-        public override void SendCard(ref PowerShell ps)
+        public override void SendCard(ref PowerShell ps, string channelsFile)
         {
-            throw new NotImplementedException();
+            var lines = System.IO.File.ReadAllLines(channelsFile);
+            foreach (var line in lines)
+            {
+                this.Uri = line;
+                ScriptBlock scriptBlock = ScriptBlock.Create("{New-ThumbnailImage -Url 'https://upload.wikimedia.org/wikipedia/en/a/a6/Bender_Rodriguez.png' -AltText \"Bender Rodríguez\"}");
+                ps.AddCommand("New-ThumbnailCard")
+                .AddParameter("Title", Title)
+                .AddParameter("SubTitle", SubTitle)
+                .AddParameter("Text", Text)
+                .AddParameter("Content", scriptBlock)
+                .AddParameter("Uri", this.Uri);
+
+                scriptBlock.InvokeReturnAsIs(new object[] { });
+                ps.Invoke();
+            }
+            ps.Dispose();
         }
     }
     public class ThumbnailCard : BaseCard
     {
-        public override void SendCard(ref PowerShell ps)
+        public override void SendCard(ref PowerShell ps, string channelsFile)
         {
 
             #region dead code 
@@ -157,15 +200,20 @@ namespace PowerShellModuleTest.Cmdlet
             //ps.AddCommand(command);
             #endregion
 
-            ScriptBlock scriptBlock = ScriptBlock.Create("{New-ThumbnailImage -Url 'https://upload.wikimedia.org/wikipedia/en/a/a6/Bender_Rodriguez.png' -AltText \"Bender Rodríguez\"}");
-            ps.AddCommand("New-ThumbnailCard")
-            .AddParameter("Title", Title)
-            .AddParameter("SubTitle", SubTitle)
-            .AddParameter("Text", Text)
-            .AddParameter("Content", scriptBlock)
-            .AddParameter("Uri", Uri);
+            var lines = System.IO.File.ReadAllLines(channelsFile);
+            foreach (var line in lines)
+            {
+                this.Uri = line;
+                ScriptBlock scriptBlock = ScriptBlock.Create("{New-ThumbnailImage -Url 'https://upload.wikimedia.org/wikipedia/en/a/a6/Bender_Rodriguez.png' -AltText \"Bender Rodríguez\"}");
+                ps.AddCommand("New-ThumbnailCard")
+                .AddParameter("Title", Title)
+                .AddParameter("SubTitle", SubTitle)
+                .AddParameter("Text", Text)
+                .AddParameter("Content", scriptBlock)
+                .AddParameter("Uri", this.Uri);
 
-            ps.Invoke();
+                ps.Invoke();
+            }
             ps.Dispose();
         }
     }
