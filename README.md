@@ -105,4 +105,4 @@ public class HeroCard : BaseCard
         (...omitted code)
 ```
 The full implementation can be seen [here](https://github.com/mvit777/teams-card-cmdlet/blob/master/PowerShellModuleTest.Cmdlet/TestCardCmdletCommand.cs)
-The same library, as said, is used by the command line and GUI version of the [PsCardRage](https://github.com/mvit777/psroids) application, but you can you this library in any project. Just suffice to include the .dll as you would to do for any other .psm1 module in your powershell script.
+The same library, as said, is used by the command line and GUI version of the [PsCardRage](https://github.com/mvit777/psroids) application, but you can use this library in any type of project. Just suffice to include the .dll as you would to do for any other .psm1 module in your powershell script.
