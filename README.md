@@ -74,3 +74,34 @@ with a very precise structure
             WriteVerbose("End!");
         }
 ```
+Then I built an ICard interface and forced the SendCard method implementation for each classes (AdaptiveCard, ListCard, HeroCard, ThumbnailCard) that implements the interface. In turns, each SendCard method implementation call the [PSTeams](https://github.com/EvotecIT/PSTeams) powershell module with default parameters set from the .yaml config template and processed from the .json config instance.
+```csharp
+(...omitted code..)
+public class HeroCard : BaseCard
+    {
+        public override void SendCard(ref PowerShell ps, string channelsFile)
+        {
+                var lines = System.IO.File.ReadAllLines(channelsFile);
+                foreach (var line in lines)
+                {
+                    var columns = line.Split(';');
+                    ScriptBlock scriptBlock = ScriptBlock.Create("{New-HeroImage -Url 'https://upload.wikimedia.org/wikipedia/en/a/a6/Bender_Rodriguez.png' -AltText \"Bender Rodríguez\"}");
+                    ps.AddCommand("New-HeroCard")
+                    .AddParameter("Title", Title)
+                    .AddParameter("SubTitle", SubTitle)
+                    .AddParameter("Text", Text)
+                    .AddParameter("Content", scriptBlock)
+                    .AddParameter("Uri", columns[0]);
+
+                    if (columns[1].Trim() != String.Empty)
+                    {
+                        ps.Invoke();
+                    }
+                    
+                }
+                ps.Dispose();
+            }
+        }
+        (...omitted code)
+```
+
