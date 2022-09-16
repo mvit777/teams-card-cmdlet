@@ -26,6 +26,7 @@ New-ThumbnailCard -Title 'Bender' -SubTitle "tale of a robot who dared to love" 
 ```
 to
 ```powershell
-.\main.ps1 thumbnail
+.\main.ps1
 ```
-content and structure can be edited on the fly directly in vscode as a .yml file. That happens during the run of the main.ps1 script
+and then a bunch of mixed interactive questions on the shell and some gui for channel manager and an optional blazor gui for non-techie users.
+Content and structure, as said, can also be edited on the fly directly in vscode as a .yml file. That happens during the run of the main.ps1 script
