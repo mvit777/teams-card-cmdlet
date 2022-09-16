@@ -44,7 +44,7 @@ Import-Module -Name $dllRoot\PowerShellModuleTest.Cmdlet.dll
 ```
 and you can use it straight away as powershell module (.psm1)
 As I learnt from [this execellent article](https://www.terrybutler.co.uk/2021/08/12/creating-powershell-module-csharp/) it is then just necessary to import 
-a couple of namespaces and create a Cmdlet class 
+a couple of namespaces and create a Cmdlet class with properties as (optional) parameters
 ```csharp
 (...other namespaces omitted for brevity..)
 using System.Management.Automation;
@@ -57,3 +57,6 @@ namespace PowerShellModuleTest.Cmdlet{
 
 ```
 with a very precise structure
+```csharp
+
+```
