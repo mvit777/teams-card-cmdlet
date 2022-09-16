@@ -33,3 +33,13 @@ Content and structure, as said, can also be edited on the fly directly in vscode
 
 ## How to use the library
 Examples of how to use the library from powershell, blazor or any other client can be seen in the [PSCardRage repository](https://github.com/mvit777/psroids)
+
+## Brief explanation of the code
+Turns out that in powershell is possible to use a .NET custom library and from that library it is also possible to invoke ps scripts or ps modules.
+
+To include the .NET lib in your ps script it is only necessary to add this line at top of powershell script
+```powershell
+$dllRoot = 'C:\<PATH_TO>\PowerShellModuleTest\PowerShellModuleTest.Cmdlet\bin\Debug\netstandard2.0'
+Import-Module -Name $dllRoot\PowerShellModuleTest.Cmdlet.dll
+```
+and you can use it straight away as powershell module (.psm1)
