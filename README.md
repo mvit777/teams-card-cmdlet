@@ -104,4 +104,4 @@ public class HeroCard : BaseCard
         }
         (...omitted code)
 ```
-
+The full implementation can be seen [here](https://github.com/mvit777/teams-card-cmdlet/blob/master/PowerShellModuleTest.Cmdlet/TestCardCmdletCommand.cs)
