@@ -147,45 +147,34 @@ namespace PowerShellModuleTest.Cmdlet
     {
         public override void SendCard(ref PowerShell ps, string channelsFile)
         {
-            var lines = System.IO.File.ReadAllLines(channelsFile);
-            foreach (var line in lines)
-            {
-                ScriptBlock scriptBlock = ScriptBlock.Create("{New-HeroImage -Url 'https://upload.wikimedia.org/wikipedia/en/a/a6/Bender_Rodriguez.png' -AltText \"Bender Rodríguez\"}");
-                ps.AddCommand("New-HeroCard")
-                .AddParameter("Title", Title)
-                .AddParameter("SubTitle", SubTitle)
-                .AddParameter("Text", Text)
-                .AddParameter("Content", scriptBlock)
-                .AddParameter("Uri", line);
-
-                scriptBlock.InvokeReturnAsIs(new object[] { });
-                ps.Invoke();
-            }
-            ps.Dispose();
+            throw new NotImplementedException();
         }
     }
     public class HeroCard : BaseCard
     {
         public override void SendCard(ref PowerShell ps, string channelsFile)
         {
-            var lines = System.IO.File.ReadAllLines(channelsFile);
-            foreach (var line in lines)
-            {
-                this.Uri = line;
-                ScriptBlock scriptBlock = ScriptBlock.Create("{New-ThumbnailImage -Url 'https://upload.wikimedia.org/wikipedia/en/a/a6/Bender_Rodriguez.png' -AltText \"Bender Rodríguez\"}");
-                ps.AddCommand("New-ThumbnailCard")
-                .AddParameter("Title", Title)
-                .AddParameter("SubTitle", SubTitle)
-                .AddParameter("Text", Text)
-                .AddParameter("Content", scriptBlock)
-                .AddParameter("Uri", this.Uri);
+                var lines = System.IO.File.ReadAllLines(channelsFile);
+                foreach (var line in lines)
+                {
+                    var columns = line.Split(';');
+                    ScriptBlock scriptBlock = ScriptBlock.Create("{New-HeroImage -Url 'https://upload.wikimedia.org/wikipedia/en/a/a6/Bender_Rodriguez.png' -AltText \"Bender Rodríguez\"}");
+                    ps.AddCommand("New-HeroCard")
+                    .AddParameter("Title", Title)
+                    .AddParameter("SubTitle", SubTitle)
+                    .AddParameter("Text", Text)
+                    .AddParameter("Content", scriptBlock)
+                    .AddParameter("Uri", columns[0]);
 
-                scriptBlock.InvokeReturnAsIs(new object[] { });
-                ps.Invoke();
+                    if (columns[1].Trim() != String.Empty)
+                    {
+                        ps.Invoke();
+                    }
+                    
+                }
+                ps.Dispose();
             }
-            ps.Dispose();
         }
-    }
     public class ThumbnailCard : BaseCard
     {
         public override void SendCard(ref PowerShell ps, string channelsFile)
@@ -203,7 +192,8 @@ namespace PowerShellModuleTest.Cmdlet
             var lines = System.IO.File.ReadAllLines(channelsFile);
             foreach (var line in lines)
             {
-                this.Uri = line;
+                var columns = line.Split(';');
+                this.Uri = columns[0];
                 ScriptBlock scriptBlock = ScriptBlock.Create("{New-ThumbnailImage -Url 'https://upload.wikimedia.org/wikipedia/en/a/a6/Bender_Rodriguez.png' -AltText \"Bender Rodríguez\"}");
                 ps.AddCommand("New-ThumbnailCard")
                 .AddParameter("Title", Title)
