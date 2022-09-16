@@ -29,4 +29,7 @@ to
 .\main.ps1
 ```
 and then a bunch of mixed interactive questions on the shell and some gui for channel manager and an optional blazor gui for non-techie users.
-Content and structure, as said, can also be edited on the fly directly in vscode as a .yml file. That happens during the run of the main.ps1 script
+Content and structure, as said, can also be edited on the fly directly in vscode as a .yml file. That happens during the run of the main.ps1 script.
+
+How to use the library
+Examples of how to use the library from powershell, blazor or any other client can be seen in the [PSCardRage repoistory](https://github.com/mvit777/psroids)
