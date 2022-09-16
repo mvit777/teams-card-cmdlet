@@ -43,7 +43,7 @@ $dllRoot = 'C:\<PATH_TO>\PowerShellModuleTest\PowerShellModuleTest.Cmdlet\bin\De
 Import-Module -Name $dllRoot\PowerShellModuleTest.Cmdlet.dll
 ```
 and you can use it straight away as powershell module (.psm1)
-As I learnt from [this execellent article](https://www.terrybutler.co.uk/2021/08/12/creating-powershell-module-csharp/) it is then just necessary to import 
+As I learnt from [this execellent article](https://www.terrybutler.co.uk/2021/08/12/creating-powershell-module-csharp/) it is one just needs to import 
 a couple of namespaces and create a Cmdlet class with properties as (optional) parameters
 ```csharp
 (...other namespaces omitted for brevity..)
@@ -105,3 +105,4 @@ public class HeroCard : BaseCard
         (...omitted code)
 ```
 The full implementation can be seen [here](https://github.com/mvit777/teams-card-cmdlet/blob/master/PowerShellModuleTest.Cmdlet/TestCardCmdletCommand.cs)
+The same library, as said, is used by the command line and GUI version of the [PsCardRage](https://github.com/mvit777/psroids) application, but you can you this library in any project. Just suffice to include the .dll as you would to do for any other .psm1 module in your powershell script.
